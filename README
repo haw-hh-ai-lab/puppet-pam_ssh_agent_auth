@@ -1,1 +1,3 @@
-this is a readme
+puppet-pam_ssh_agent_auth
+
+authenticating in PAM via a forwarded SSH-agent
