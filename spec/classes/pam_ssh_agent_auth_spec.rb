@@ -24,7 +24,7 @@ describe 'pam_ssh_agent_auth' do
       )
       
       
-      should contain_file('/etc/pamd.d/login')
+      should contain_file('/etc/pam.d/login')
       should contain_file('/etc/securetty')
       
       # TODO: SSH config
