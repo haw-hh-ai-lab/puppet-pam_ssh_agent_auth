@@ -20,7 +20,7 @@ describe 'pam_ssh_agent_auth' do
       should contain_file('/home_local/ubuntu/.ssh/authorized_keys').with(
       		'owner' => 'ubuntu',
       		'group' => 'ubuntu',
-      		'mode'  => '644',       		
+      		'mode'  => '0444',       		
       )
       
       

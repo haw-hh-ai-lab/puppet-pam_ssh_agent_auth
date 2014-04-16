@@ -69,14 +69,14 @@ class pam_ssh_agent_auth {
     source => 'puppet:///modules/pam-ssh-agent-auth/sudo.pam',
     owner  => root,
     group  => root,
-    mode   => 644,
+    mode   => '0644',
   }
 
   file { '/etc/pam.d/login':
     source => 'puppet:///modules/pam-ssh-agent-auth/login.pam',
     owner  => root,
     group  => root,
-    mode   => 644,
+    mode   => '0644',
   }
 
   file { '/etc/securetty':
