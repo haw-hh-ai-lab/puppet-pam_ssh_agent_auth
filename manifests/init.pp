@@ -49,21 +49,6 @@ class pam_ssh_agent_auth {
     mode   => '0440'
   }
 
-  file { '/home_local/ubuntu/.ssh':
-    ensure  => directory,
-    owner   => 'ubuntu',
-    group   => 'ubuntu',
-    mode    => 755,
-    require => User['ubuntu'],
-  }
-
-  file { '/home_local/ubuntu/.ssh/authorized_keys':
-    source  => 'puppet:///modules/pam-ssh-agent-auth/root_authorized_keys',
-    owner   => ubuntu,
-    group   => ubuntu,
-    mode    => '0444',
-    require => File['/home_local/ubuntu/.ssh'],
-  }
 
   file { '/etc/pam.d/sudo':
     source => 'puppet:///modules/pam-ssh-agent-auth/sudo.pam',

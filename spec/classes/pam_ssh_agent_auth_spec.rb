@@ -16,13 +16,6 @@ describe 'pam_ssh_agent_auth' do
       
       should contain_file('/etc/sudoers')
       
-      should contain_file('/home_local/ubuntu/.ssh').with_ensure('directory')
-      should contain_file('/home_local/ubuntu/.ssh/authorized_keys').with(
-      		'owner' => 'ubuntu',
-      		'group' => 'ubuntu',
-      		'mode'  => '0444',       		
-      )
-      
       
       should contain_file('/etc/pam.d/login')
       should contain_file('/etc/securetty')
