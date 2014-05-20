@@ -16,7 +16,6 @@ describe 'pam_ssh_agent_auth' do
       
       should contain_file('/etc/sudoers')
       
-      
       should contain_file('/etc/pam.d/login')
       should contain_file('/etc/securetty')
       
