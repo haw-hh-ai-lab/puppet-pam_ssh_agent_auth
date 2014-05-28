@@ -43,7 +43,7 @@ class pam_ssh_agent_auth {
   }
 
   file { '/etc/sudoers':
-    source => 'puppet:///modules/pam-ssh-agent-auth/sudoers',
+    source => 'puppet:///modules/pam_ssh_agent_auth/sudoers',
     owner  => root,
     group  => root,
     mode   => '0440'
@@ -51,21 +51,21 @@ class pam_ssh_agent_auth {
 
 
   file { '/etc/pam.d/sudo':
-    source => 'puppet:///modules/pam-ssh-agent-auth/sudo.pam',
+    source => 'puppet:///modules/pam_ssh_agent_auth/sudo.pam',
     owner  => root,
     group  => root,
     mode   => '0644',
   }
 
   file { '/etc/pam.d/login':
-    source => 'puppet:///modules/pam-ssh-agent-auth/login.pam',
+    source => 'puppet:///modules/pam_ssh_agent_auth/login.pam',
     owner  => root,
     group  => root,
     mode   => '0644',
   }
 
   file { '/etc/securetty':
-    source => 'puppet:///modules/pam-ssh-agent-auth/securetty',
+    source => 'puppet:///modules/pam_ssh_agent_auth/securetty',
     owner  => root,
     group  => root,
     mode   => '0644',
