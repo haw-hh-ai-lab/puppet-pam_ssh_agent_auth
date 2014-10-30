@@ -1,0 +1,24 @@
+{
+  "name": "cypherfox-pam_ssh_agent_auth",
+  "version": "0.1.0",
+  "summary": "Authenticate user in PAM using a forwarded SSH agent",
+  "author": "Lutz Behnke \u003clutz.behnke@haw-hamburg.de\u003e",
+  "description": "Authenticate user in PAM using a forwarded SSH agent",
+  "dependencies": [
+    {
+      "name": "erwbgy/system",
+      "version_requirement": ">= 0.7.4"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.1.0"
+    },
+    {
+      "name": "puppetlabs/apt",
+      "version_requirement": ">= 1.4.1"
+    }
+  ],
+  "source": "git://github.com/haw-hh-ai-lab/puppet-pam_ssh_agent_auth",
+  "project_page": "git://github.com/haw-hh-ai-lab/puppet-pam_ssh_agent_auth",
+  "license": "Apache 2.0"
+}
