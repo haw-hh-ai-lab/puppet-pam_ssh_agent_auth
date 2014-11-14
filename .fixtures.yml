@@ -3,7 +3,9 @@ fixtures:
     apt:             "git://github.com/puppetlabs/puppetlabs-apt"
     system:          "git://github.com/erwbgy/puppet-system"
     # transient dependencies of system
-    augeasproviders: "git://github.com/hercules-team/augeasproviders"
+    augeasproviders: 
+      repo: "git://github.com/hercules-team/augeasproviders"
+      ref:  "v1.2.0"
     limits:          "git://github.com/erwbgy/puppet-limits"
     ntp:             "git://github.com/puppetlabs/puppetlabs-ntp"
     concat:          "git://github.com/puppetlabs/puppetlabs-concat.git"
