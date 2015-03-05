@@ -71,50 +71,21 @@ class pam_ssh_agent_auth {
     mode   => '0644',
   }
 
-  class { 'system::sshd':
-    config         => {
-      'PubkeyAuthentication'   => {
-        value                    => 'yes',
-      }
-      ,
-      'PasswordAuthentication' => {
-        value                    => 'no',
-      }
-      ,
-      'ChallengeResponseAuthentication' => {
-        value                    => 'no',
-      }
-      ,
-      'UsePAM'                 => {
-        value                    => 'yes',
-      }
-      ,
-      'X11Forwarding'          => {
-        value                    => 'yes',
-      }
-      ,
-      'PermitRootLogin'        => {
-        value                    => 'no',
-      }
-      ,
-      'AllowGroups'            => {
-        value                    => ['inf-staff', 'ubuntu'],
-      }
-      ,
-    }
-    ,
-    sync_host_keys => true,
-  }
-
-  class { 'system::sshd::subsystem':
-    config => {
-      'sftp' => {
-        'command' => $::operatingsystem ? {
-          Ubuntu  => '/usr/lib/openssh/sftp-server',
-          SLES    => '/usr/lib64/ssh/sftp-server',
-          default => '/usr/lib/openssh/sftp-server'
-        } }
-    }
+  class {'ssh::server':
+    options => {
+        'PubkeyAuthentication'             => 'yes',
+        'PasswordAuthentication'           => 'no' ,
+        'ChallengeResponseAuthentication'  => 'no' ,
+        'PermitRootLogin'                  => 'no' ,
+        'UsePAM'                           => 'yes',
+        'HostKey'                          => [ '/etc/ssh/ssh_host_rsa_4k_key', '/etc/ssh/ssh_host_ed25519_key'],
+        'KexAlgorithms'                    => 'curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256',
+        'Ciphers'                          => 'chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr',
+        'MACs'                             => 'hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-ripemd160-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-512,hmac-sha2-256,hmac-ripemd160,hmac-ripemd160@openssh.com',
+        'X11Forwarding'                    => 'yes' ,
+        'AllowGroups'                      => [ 'inf-staff', 'ubuntu'],
+        'PrintMotd'                        => 'no',
+        },
   }
 }
 
