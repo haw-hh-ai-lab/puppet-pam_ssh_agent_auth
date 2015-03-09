@@ -71,8 +71,17 @@ class pam_ssh_agent_auth {
     mode   => '0644',
   }
 
+  # Puppet versions <3.5.0 did not support the ssl-key type ed-25519, so turn of storeconfigs for those machines
+  # TODO: get the current puppet version from puppetlabs, not the linux distro provider.
+  if $::puppetversion =~ /^(3\.5|3\.6|3\.7|4\.0).*/ {
+    $storeconfigs_enabled = true
+  } else {
+    $storeconfigs_enabled = false
+  }
+
   class {'ssh::server':
-    options => {
+    storeconfigs_enabled => $storeconfigs_enabled,
+    options               => {
         'PubkeyAuthentication'             => 'yes',
         'PasswordAuthentication'           => 'no' ,
         'ChallengeResponseAuthentication'  => 'no' ,
