@@ -95,6 +95,38 @@ class pam_ssh_agent_auth {
         'AllowGroups'                      => [ 'inf-staff', 'ubuntu'],
         'PrintMotd'                        => 'no',
         },
+    require => [ Exec['create-rsa-4k-key'], Exec['create-ed25519-key'] ],
   }
+
+    exec { 'create-rsa-4k-key':
+    command => '/usr/bin/ssh-keygen -f /etc/ssh/ssh_host_rsa_4k_key -t rsa -b 4096 -N "" ',
+    creates => '/etc/ssh/ssh_host_rsa_4k_key',
+    refresh => '/bin/true',
+  }
+
+  exec { 'create-ed25519-key':
+    command => '/usr/bin/ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -t ed25519 -N "" ',
+    creates => '/etc/ssh/ssh_host_ed25519_key',
+    refresh => '/bin/true',
+  }
+
+  # ensure that ssh public keys are public readable
+  file{['/etc/ssh/ssh_host_rsa_4k_key.pub', '/etc/ssh/ssh_host_ed25519_key.pub']:
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
+    require => [ Exec['create-rsa-4k-key'], Exec['create-ed25519-key'] ],
+
+  }
+
+  # ensure that ssh private keys are only readable by root
+  file{['/etc/ssh/ssh_host_rsa_4k_key', '/etc/ssh/ssh_host_ed25519_key']:
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
+    require => [ Exec['create-rsa-4k-key'], Exec['create-ed25519-key'] ],
+  }
+
+
 }
 
