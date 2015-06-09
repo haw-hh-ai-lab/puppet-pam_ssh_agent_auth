@@ -1,14 +1,8 @@
 fixtures:
   repositories:
     apt:             "git://github.com/puppetlabs/puppetlabs-apt"
-    system:          "git://github.com/erwbgy/puppet-system"
-    # transient dependencies of system
-    augeasproviders: 
-      repo: "git://github.com/hercules-team/augeasproviders"
-      ref:  "v1.2.0"
-    limits:          "git://github.com/erwbgy/puppet-limits"
-    ntp:             "git://github.com/puppetlabs/puppetlabs-ntp"
     concat:          "git://github.com/puppetlabs/puppetlabs-concat.git"
+    ssh:             "git://github.com/Seegras/puppet-ssh"
     stdlib: 
       repo: "git://github.com/puppetlabs/puppetlabs-stdlib"
       ref: "4.1.0"
