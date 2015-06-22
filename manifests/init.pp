@@ -7,7 +7,7 @@
 class pam_ssh_agent_auth {
   package { 'pam-ssh-agent-auth':
     ensure  => latest,
-    require =>  Apt::Source ['cypherfox-ailaddon'],
+    require =>  Apt::Source ['cypherfox_ailaddon'],
   }
 
   file { '/home_local':
